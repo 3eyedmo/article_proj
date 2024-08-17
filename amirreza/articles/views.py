@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from articles.models import Article
+from .forms import ArticleForm
+
 
 def show_articles(request):
     articles = Article.objects.all()
@@ -22,3 +24,17 @@ def article_detail(request, article_id):
 ## URLS:
 # /articles
 # /articles/{article.id} ==> view | path
+
+def create_article(request):
+    if request.method == "POST":
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('articles:read_articles')
+    elif request.method == "GET":
+        form = ArticleForm()
+    return render(
+        request,
+        template_name='articles/create.html',
+        context={'form': form}
+    )
