@@ -3,6 +3,17 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import RegisterForm
 
+
+def login_redirect_(func):
+    def decorator(request):
+        if request.user.is_authenticated:
+            return redirect('articles:read_articles')
+        return func(request)
+    
+    return decorator
+
+
+@login_redirect_
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -21,6 +32,7 @@ def logout_view(request):
     return redirect('accounts:login')
 
 
+@login_redirect_
 def register_view(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
