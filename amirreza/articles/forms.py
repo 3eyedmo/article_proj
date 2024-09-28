@@ -9,12 +9,12 @@ class ArticleForm(forms.ModelForm):
         model = Article
         fields = ['introduction', 'body', 'title']
 
-    def save(self, commit: bool = ...) -> Any:
-        return super().save(commit)
+    # def save(self, commit: bool = ...) -> Any:
+    #     return super().save(commit)
     
-    def clean_body(self):
-        data = self.cleaned_data["body"]
-        if int(data):
-            raise ValidationError(message="Invalid Body")
-        return data
+    # def clean_body(self):
+    #     data = self.cleaned_data["body"]
+    #     if int(data):
+    #         raise ValidationError(message="Invalid Body")
+    #     return data
     

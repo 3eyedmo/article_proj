@@ -6,7 +6,7 @@ from articles.models import Article
 
 class ArticleAdmin(admin.ModelAdmin):
     list_display = [
-        'id', 'title', 'introduction', 'body'
+        'id', 'user', 'title', 'introduction', 'body'
     ]
 
 admin.site.register(Article, ArticleAdmin)

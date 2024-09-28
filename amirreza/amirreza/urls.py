@@ -6,7 +6,8 @@ from .views import amirreza_handler
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('people/<int:pk>/', amirreza_handler),
-    path('articles/', include('articles.urls', namespace='articles'))
+    path('articles/', include('articles.urls', namespace='articles')),
+    path('accounts/', include('accounts.urls', namespace='accounts'))
 ]
 
 
